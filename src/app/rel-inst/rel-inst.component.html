@@ -1,0 +1,36 @@
+<div class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand">
+      <i class="fa fa-desktop"></i> School Platform
+  </a>
+  <a href="#/logout" class="navbar-brand">
+    Cerrar Sesi&oacute;n
+  </a>
+</div>
+<br>
+<div class="container">
+  <h2 class="alert alert-success" *ngIf="obt">
+    Seleccione la Instituci&oacute;n sobre la cual desea realizar cambios
+  </h2>
+  <div class="row" *ngIf="obt">
+    <div class="col-lg-3" *ngFor="let inst of instituciones">
+      <div class="card card-profile">
+        <!--<div class="card-header" style="background-image: url(assets/images/background.jpg);"></div>-->
+        <div class="card-body text-center">
+          <img class="" src="assets/images/instituciones/{{inst.imagen_institucion}}" width="150">
+          <h3 class="mb-3">{{inst.nombre_institucion}}</h3>
+          <p class="mb-4">
+            Sede: {{inst.nombre_sedes}}<br> <strong>{{inst.nombre_rol}}.</strong>
+          </p>
+          <button type="submit" class="btn btn-pill btn-orange btn-sm" (click)="enterIns(inst.nombre_institucion,inst.sedes_id_sedes_ip,inst.roles_id_roles_ip,inst.nombre_sedes,inst.nombre_rol,inst.codigo_institucion,inst.imagen_institucion)">
+            <span class="fa fa-check"></span> Ingresar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!obt">
+    <h2 class="alert alert-info">
+      No existen relaciones, consulte al administrador de su Instituci&oacute;n.
+    </h2>
+  </div>
+</div>

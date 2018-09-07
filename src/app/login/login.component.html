@@ -1,0 +1,55 @@
+<div class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand">
+      <i class="fa fa-desktop"></i> School Platform
+  </a>
+</div>
+
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form autocomplete="off" #userName="ngForm" (ngSubmit)="submitLogin(userName)">
+            <h1>Bienvenido</h1>
+            <div *ngIf="acceso" [class]="acceso.clase">
+              {{acceso.mensaje}}
+            </div>
+            <div> 
+              <input type="text" class="form-control" placeholder="Identificaci&oacute;n" name="usuario" autofocus required ngModel/>
+            </div>
+            <div>
+              <input type="password" class="form-control" placeholder="Password" name="pwd" required ngModel/>
+            </div>
+            <div>
+              <button class="btn btn-outline-success submit" type="submit">
+                <span *ngIf="loading">
+                  <img src="assets/images/loading.gif">
+                  Iniciar Sesi&oacute;n
+                </span>
+                <span *ngIf="!loading">
+                  <i class="fa fa-lock"></i> 
+                  Iniciar Sesi&oacute;n
+                </span>
+              </button>
+              <a class="reset_pass" href="" routerLink="recovery">He olvidado mi contrase&ntilde;a</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-desktop"></i> School Platform!</h1>
+                <p>&copy; 2018 Todos los derechos reservados. School Platform. </p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>

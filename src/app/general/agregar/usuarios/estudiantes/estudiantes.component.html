@@ -1,0 +1,269 @@
+<style>
+  .p-3{
+    cursor: pointer;
+  }
+</style>
+<div class="my-3 my-md-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <form #userName="ngForm" (ngSubmit)="submitStudent(userName)" class="card">
+          <div class="card-header">
+            <h3 class="card-title">Agregar Estudiante </h3> <small> (Debe ir dando clic en cada inciso para llenar todos los datos)</small>
+          </div>
+          <div class="card-body">
+            <div class="col-sm-12 col-lg-4">
+              <div class="card p-3" (click)="ver(1)">
+                <div class="d-flex align-items-center">
+                  <span class="stamp stamp-md bg-success mr-3">
+                    <i class="fe fe-user-check"></i>
+                  </span>
+                  <div>
+                    <h4 class="m-0"><a>Datos Personales</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+              <div class="card p-3" (click)="ver(2)">
+                <div class="d-flex align-items-center">
+                  <span class="stamp stamp-md bg-danger mr-3">
+                    <i class="fe fe-briefcase"></i>
+                  </span>
+                  <div>
+                    <h4 class="m-0"><a>Información Médica</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+              <div class="card p-3" (click)="ver(3)">
+                <div class="d-flex align-items-center">
+                  <span class="stamp stamp-md bg-info mr-3">
+                    <i class="fe fe-users"></i>
+                  </span>
+                  <div>
+                    <h4 class="m-0"><a>Información Familiar</a></h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            Codigo Matricula: ({{codigo_int}})
+            <div [hidden]="!ver1">
+              <h3>Datos Personales</h3>
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Primer Apellido <span class="form-required">*</span></label>
+                    <input class="form-control" name="apellido1" placeholder="Primer Apellido" type="text" ngModel required autofocus>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Segundo Apellido <span class="form-required">*</span></label>
+                    <input class="form-control" name="apellido2" placeholder="Segundo Apellido" type="text" ngModel required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Nombres <span class="form-required">*</span></label>
+                    <input class="form-control" name="nombres" placeholder="Nombres" type="text" ngModel required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Sexo <span class="form-required">*</span></label>
+                    <select class="form-control custom-select" name="sexo" ngModel required>
+                      <option value="m">Masculino</option>
+                      <option value="f">Femenino</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Grado <span class="form-required">*</span></label>
+                    <select name="grado" class="form-control custom-select" ngModel required>
+                      <option value="1">Pre jardin</option>
+                      <option value="2">Jardin</option>
+                      <option value="3">Transición</option>
+                      <option value="4">Primero</option>
+                      <option value="5">Segundo</option>
+                      <option value="6">Tercero</option>
+                      <option value="7">Cuarto</option>
+                      <option value="8">Quinto</option>
+                      <option value="9">Sexto</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Dirección <span class="form-required">*</span></label>
+                    <input class="form-control" name="direccion" placeholder="Dirección" type="text" ngModel required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Barrio <span class="form-required">*</span></label>
+                    <input class="form-control" name="barrio" placeholder="Barrio" type="text" ngModel required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Tipo documento <span class="form-required">*</span></label>
+                    <select name="tipodoc" class="form-control custom-select" ngModel required>
+                      <option value="RC">Registro Civil</option>
+                      <option value="TI">Tarjeta de Identidad</option>
+                      <option value="CC">Cédula de Ciudadanía</option>
+                    </select>
+                  </div>
+                </div>                
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Documento <span class="form-required">*</span></label>
+                    <input class="form-control" name="documento" type="number" ngModel required>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Departamento <span class="form-required">*</span></label>
+                    <select class="form-control custom-select" #dep (change)="selectDep(dep.value)" name="dep" ngModel>
+                      <option *ngFor="let dep of departamentos" [value]="[dep.id_departamento]">{{dep.nom_depart}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Ciudad <span class="form-required">*</span></label>
+                    <select class="form-control custom-select" name="ciu" ngModel>
+                      <option *ngFor="let ciu of ciudad" [value]="[ciu.id_ciudad]">{{ciu.nom_ciudad}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div [hidden]="!ver2">
+              <h3>Información médica</h3>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">RH <span class="form-required">*</span></label>
+                  <select name="rh" class="form-control custom-select" ngModel required>
+                    <option value="a+">A+</option>
+                    <option value="a-">A-</option>
+                    <option value="o+">O+</option>
+                    <option value="o-">O-</option>
+                    <option value="ab+">AB+</option>
+                    <option value="ab-">AB-</option>
+                    <option value="b+">B+</option>
+                    <option value="b-">B-</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Estrato <span class="form-required">*</span></label>
+                  <select name="estrato" class="form-control custom-select" ngModel required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Nivel Sisbén <span class="form-required">*</span></label>
+                  <select name="sisben" class="form-control custom-select" ngModel required>
+                    <option value="1">Nivel Uno</option>
+                    <option value="2">Nivel Dos</option>
+                    <option value="3">Nivel Tres</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">EPS <span class="form-required">*</span></label>
+                  <input type="text" class="form-control" name="eps" placeholder="EPS" ngModel required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Discapacidad <span class="form-required">*</span></label>
+                  <select name="dispacidad" class="form-control custom-select" #d ngModel required (change)="discapacidadSelect(d.value)">
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3" [hidden]="!discapacidadS">
+                <div class="form-group">
+                  <label class="form-label">¿Cuál? <span class="form-required">*</span></label>
+                  <input type="text" class="form-control" name="cualdiscapacidad" placeholder="¿Cuál?" ngModel required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Etnia <span class="form-required">*</span></label>
+                  <select name="etnia" class="form-control custom-select" #e ngModel required (change)="etniaSelect(e.value)">
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3" [hidden]="!etniaS">
+                <div class="form-group">
+                  <label class="form-label">¿Cuál? <span class="form-required">*</span></label>
+                  <input type="text" class="form-control" name="cualetnia" placeholder="¿Cuál?" ngModel required>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Victima Conflicto <span class="form-required">*</span></label>
+                  <select name="victimaConflicto" class="form-control custom-select" ngModel required>
+                    <option value="dga">Desvinculado de grupos armados</option>
+                    <option value="sd">Situaión desplazamiento</option>
+                    <option value="had">Hijo de adultos desplazados</option>
+                    <option value="vm">Victima de minas</option>
+                    <option value="na">No aplica</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Alergias</label>
+                  <input type="text" class="form-control" name="alergias" ngModel placeholder="Alergias">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Medicamentos</label>
+                  <input type="text" class="form-control" name="medicamentos" ngModel placeholder="Medicamentos">
+                </div>
+              </div>
+            </div>
+            <div [hidden]="!ver3">
+              <h3>Información Familiar</h3>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Documento</label>
+                  <input type="number" class="form-control" name="documentoP" placeholder="Documento">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Expedido en</label>
+                  <input type="text" class="form-control" name="expedidoP" placeholder="Expedido en">
+                </div>
+              </div>
+            </div>
+            <div [hidden]="!ver4">
+              Resumen
+            </div>
+          </div>
+        <div class="card-footer text-right">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

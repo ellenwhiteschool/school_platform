@@ -1,0 +1,32 @@
+  <div class="row">
+    <div class="col-lg-4 offset-lg-2">
+      <div class="card card-profile">
+        <div class="card-header bg-cyan"></div>
+        <div class="card-body text-center">
+          <img src="assets/images/general/students.png" alt="Students" class="card-profile-img">
+          <h3 class="mb-3">Estudiantes</h3>
+          <p class="mb-4">
+            Desde éste módulo podrá agregar toda la información personal, médica, familiar de cada estudiante.
+          </p>
+          <button class="btn btn-primary" [routerLink]="['/add','student']">
+             Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card card-profile">
+        <div class="card-header bg-cyan"></div>
+        <div class="card-body text-center">
+          <img src="assets/images/general/employee.png" alt="Employees" class="card-profile-img">
+          <h3 class="mb-3">Empleados</h3>
+          <p class="mb-4">
+            Desde éste módulo podrá agregar toda la información personal, médica, familiar de cada empleado.
+          </p>
+          <button class="btn btn-primary" [routerLink]="['/add','employee']">
+             Agregar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,109 @@
+<div *ngIf="editarDP">
+  <div class="alert alert-primary mb-0">
+    Editar Usuario ID : <b>({{id}})</b>
+  </div><br>
+
+  <div class="col-md-12" *ngIf="foundU">
+      <form class="card" #editDoc="ngForm" (ngSubmit)="editar(editDoc)">
+        <div class="card-body">
+          <div class="row">
+            <input type="hidden" name="coduser" [(ngModel)]="id">
+            <input type="hidden" [(ngModel)]="tipo" name="tipo">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="form-label">Primer Nombre</label>
+                <div class="input-icon">
+                  <span class="input-icon-addon">
+                    <i class="fe fe-user"></i>
+                  </span>
+                  <input type="text" class="form-control" autofocus placeholder="Primer Nombre" name="firstName" required [(ngModel)]="persona[0].nombre_personas">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="form-label">Segundo Nombre</label>
+                <div class="input-icon">
+                  <span class="input-icon-addon">
+                    <i class="fe fe-user"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Segundo Nombre" name="secondName" [(ngModel)]="persona[0].nombre2_personas">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label class="form-label">Primer Apellido</label>
+                  <div class="input-icon">
+                    <span class="input-icon-addon">
+                      <i class="fe fe-user"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Primer Apellido" name="firstLastname" required [(ngModel)]="persona[0].apellido_personas">
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Segundo Apellido</label>
+                    <div class="input-icon">
+                      <span class="input-icon-addon">
+                        <i class="fe fe-user"></i>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Segundo Apellido" name="secondLastname" required [(ngModel)]="persona[0].apellido2_personas">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <div class="input-icon">
+                      <span class="input-icon-addon">
+                        <i class="fe fe-mail"></i>
+                      </span>
+                      <input type="email" class="form-control" placeholder="Email" name="email" required [(ngModel)]="persona[0].email_personas">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">Tel&eacute;fono</label>
+                    <div class="input-icon">
+                      <span class="input-icon-addon">
+                        <i class="fe fe-phone"></i>
+                      </span>
+                      <input type="number" class="form-control" placeholder="Telefono" name="tel" required [(ngModel)]="persona[0].tel_personas">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="form-label">G&eacute;nero</label>
+                    <div class="row gutters-xs">
+                      <div class="col-12">
+                        <select class="form-control" required name="genero" [(ngModel)]="persona[0].genero_personas">
+                          <option value="m">Masculino</option>
+                          <option value="f">Femenino</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="form-label">Direcci&oacute;n</label>
+                      <div class="input-icon">
+                        <span class="input-icon-addon">
+                          <i class="fe fe-map-pin"></i>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Dirección" name="dire" required [(ngModel)]="persona[0].dir_personas">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-icon btn-primary btn-outline-success"><i class="fa fa-edit"></i> Actualizar</button>
+        </div>
+      </form>
+    </div>
+</div>

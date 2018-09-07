@@ -1,20 +1,126 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<div *ngIf="logueado">
+  <div class="page">
+    <div class="page-main">
+      <div class="header py-4 bg-info text-white">
+        <div class="container">
+          <div class="d-flex">
+            <a class="header-brand" href="">
+              <i class="fa fa-university"></i>
+              {{user.institucion}}
+            </a>
+                        <div class="d-flex order-lg-2 ml-auto">
+                          <div class="dropdown d-none d-md-flex">
+                            <a class="nav-link icon" data-toggle="dropdown">
+                              <i class="fe fe-bell text-white"></i>
+                              <span class="nav-unread "></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                              <a href="#" class="dropdown-item d-flex">
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/male/41.jpg)"></span>
+                                <div>
+                                  <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                                  <div class="small text-muted">10 minutes ago</div>
+                                </div>
+                              </a>
+                              <a href="#" class="dropdown-item d-flex">
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/1.jpg)"></span>
+                                <div>
+                                  <strong>Alice</strong> started new task: Tabler UI design.
+                                  <div class="small text-muted">1 hour ago</div>
+                                </div>
+                              </a>
+                              <a href="#" class="dropdown-item d-flex">
+                                <span class="avatar mr-3 align-self-center" style="background-image: url(demo/faces/female/18.jpg)"></span>
+                                <div>
+                                  <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                                  <div class="small text-muted">2 hours ago</div>
+                                </div>
+                              </a>
+                              <div class="dropdown-divider"></div>
+                              <a href="#" class="dropdown-item text-center text-muted-dark">Mark all as read</a>
+                            </div>
+                          </div>
+                          <div class="dropdown">
+                            <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+                              <span class="avatar avatar-green" *ngIf="user.id_rol==1">{{abrev}}</span>
+                              <span class="avatar avatar-red" *ngIf="user.id_rol==2">{{abrev}}</span>
+                              <span class="ml-2 d-none d-lg-block">
+                                <span class="text-default text-white">{{user.nombre}}</span>
+                                <small class="text-muted d-block mt-1 text-white">{{user.n_rol}}</small>
+                              </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item" href="#">
+                                <i class="dropdown-icon fe fe-user"></i> Profile
+                              </a>
+                              <a class="dropdown-item" href="#">
+                                <i class="dropdown-icon fe fe-settings"></i> Settings
+                              </a>
+                              <a class="dropdown-item" href="#">
+                                <span class="float-right"><span class="badge badge-primary">6</span></span>
+                                <i class="dropdown-icon fe fe-mail"></i> Inbox
+                              </a>
+                              <a class="dropdown-item" href="#">
+                                <i class="dropdown-icon fe fe-send"></i> Message
+                              </a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">
+                                <i class="dropdown-icon fe fe-help-circle"></i> Need help?
+                              </a>
+                              <a class="dropdown-item" routerLink="logout">
+                                <i class="dropdown-icon fe fe-log-out"></i> Sign out
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                          <span class="header-toggler-icon text-white"></span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+                    <div class="container">
+                      <div class="row align-items-center">
+                        <div class="col-lg order-lg-first">
+                          <ul class="nav nav-tabs border-0 flex-column flex-lg-row" *ngIf="user.id_rol==2">
+                            <li class="nav-item">
+                              <a routerLink="dashboard" class="nav-link active"><i class="fe fe-home"></i> Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-users"></i> Usuarios</a>
+                              <div class="dropdown-menu dropdown-menu-arrow">
+                                <a [routerLink]="['/add','usuarios']" class="dropdown-item "><i class="fe fe-user-check"></i> A&ntilde;adir Usuarios</a>
+                                <a href="" class="dropdown-item"><i class="fe fe-book-open"></i> Listar Usuarios</a>
+                              </div>
+                            </li>
+                          </ul>
+                          <ul class="nav nav-tabs border-0 flex-column flex-lg-row" *ngIf="user.id_rol==1">
+                              <li class="nav-item">
+                                <a routerLink="404" class="nav-link active"><i class="fe fe-home"></i> Inicio</a>
+                              </li>
+                              <li class="nav-item">
+                                <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-box"></i> Logros</a>
+                                <div class="dropdown-menu dropdown-menu-arrow">
+                                  <a href="./cards.html" class="dropdown-item ">Cards design</a>
+                                  <a href="./charts.html" class="dropdown-item ">Charts</a>
+                                  <a href="./pricing-cards.html" class="dropdown-item ">Pricing cards</a>
+                                </div>
+                              </li>
+                            </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="my-3 my-md-5">
+                    <div class="container" >
+                      <router-outlet></router-outlet>
+                    </div>
+                  </div>
+                </div>
+              </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
 
+<div *ngIf="!logueado">
+    <router-outlet></router-outlet>
+</div>

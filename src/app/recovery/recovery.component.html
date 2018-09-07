@@ -1,0 +1,46 @@
+<div>
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form autocomplete="off" #userName="ngForm" (ngSubmit)="onRecovery(userName)" method="post">
+            <h1>Recuperar</h1>
+            <div *ngIf="message" [class]="message.type">
+              {{message.mensaje}}
+            </div>
+            <div> 
+              <input type="text" class="form-control" placeholder="Usuario" name="usuario" autofocus required ngModel/>
+            </div>
+            <div>
+              <button class="btn btn-outline-info submit" type="submit">
+                <span *ngIf="loading">
+                  <img src="assets/images/loading.gif">
+                  Recuperar
+                </span>
+                <span *ngIf="!loading">
+                  <i class="fa fa-check"></i> 
+                  Recuperar
+                </span>
+              </button>
+              <a class="reset_pass" href="#" routerLink="">Iniciar sesi&oacute;n</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+
+              <div class="clearfix"></div>
+              <br />
+
+              <div>
+                <h1><i class="fa fa-desktop"></i> School Platform!</h1>
+                <p>&copy; 2018 Todos los derechos reservados. School Platform. </p>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>

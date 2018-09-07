@@ -1,0 +1,11 @@
+#logo{
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center left;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 15px;
+}

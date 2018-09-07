@@ -1,0 +1,77 @@
+<div *ngIf="viewDocente">
+<div class="alert alert-primary mb-0">
+  Docentes
+</div><br>
+<button [routerLink]="['/add','docente']" type="button" class="btn btn-icon btn-primary btn-outline-success"><i class="fa fa-plus"></i> Agregar Docente</button>
+<div class="tag tag-dark">
+  Docentes: 
+  <span class="tag-addon tag-success">{{cant}}</span>
+</div>
+
+<input type="text" class="form-control" name="searching" placeholder="Buscar por nombre" autofocus [(ngModel)]="searching">
+
+<div class="row row-cards row-deck">
+    <div class="col-12">
+      <div class="card">
+        <div class="table-responsive">
+          <table class="table table-hover table-outline table-vcenter text-nowrap card-table">
+            <thead>
+              <tr>
+                <th class="text-center w-1">G&eacute;nero</th>
+                <th>Nombres</th>
+                <th>Email</th>
+                <th>Tel.</th>
+                <th class="text-center">Acci&oacute;n</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="cargando">
+                <td colspan="5">
+                  <img src="assets/images/loading.gif"/> Cargando docentes
+                </td>
+              </tr>
+              <tr *ngIf="found">
+                <td>
+                  No existen docentes relacionados
+                </td>
+              </tr>
+              <tr *ngFor="let doc of docentes | search : 'nombre_personas' : searching; let i = index">
+                <td class="text-center">
+                  <span *ngIf="doc.genero_personas=='m'" class="avatar avatar-green">M</span>
+                  <span *ngIf="doc.genero_personas=='f'" class="avatar avatar-pink">F</span>
+                </td>
+                <td>
+                  <div>{{doc.nombre_personas + ' ' + doc.nombre2_personas}}</div>
+                  <div class="small text-muted">
+                    {{doc.apellido_personas + ' ' + doc.apellido2_personas}}
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    {{doc.email_personas}}
+                  </div>
+                </td>
+                <td>
+                  <div>
+                    {{doc.tel_personas}}
+                  </div>
+                </td>
+                <td class="text-center">
+                  <div class="item-action dropdown">
+                    <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i class="fe fe-more-vertical"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a [routerLink]="['/view','sedes',doc.id_personas]" class="dropdown-item"><i class="dropdown-icon fe fe-tag"></i> Sedes Asignadas </a>
+                      <a [routerLink]="['/edit','usuario',doc.id_personas]" class="dropdown-item"><i class="dropdown-icon fe fe-edit-2"></i> Editar </a>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
